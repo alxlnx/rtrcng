@@ -1,5 +1,8 @@
 #include <bits/stdc++.h>
 
+std::ofstream ofs {"output.txt"};
+
+namespace Utils {
 template <typename T> // NB: T must be an integer type (signed/unsigned, pos/neg - doesn't matter).
 void dec2bin(const T& n) 
 // Print binary representation of n (output is sent to stdout) using bit masks.
@@ -12,10 +15,46 @@ void dec2bin(const T& n)
 }
 
 template <typename T>
-void printv(const std::vector<T>& v) {
+void printv(const std::vector<T>& v) 
+// Print a vector to stdout
+{
     for (auto x : v)
         std::cout << x << ' ';
+    std::cout << '\n';
 }
+
+template <typename T>
+T get_rand_num(const T& min, const T& max) 
+// Return a random number ranging from min to max.
+{
+    std::random_device rnd_dev{};
+    std::default_random_engine engine(rnd_dev());
+    std::uniform_int_distribution<T> distribution(min, max);
+
+    return distribution(engine);
+}
+
+template <typename T>
+void random_fillv(std::vector<T>& v, const T& min, const T& max) 
+// Fill a vector with random numbers ranging from min to max.
+{
+    for (long long i{}; i < v.size(); ++i)
+        v[i] = get_rand_num<T>(min, max);
+}
+
+struct Timer
+{
+    std::chrono::high_resolution_clock::time_point start { std::chrono::high_resolution_clock::now() };
+
+    ~Timer() {
+        auto end { std::chrono::high_resolution_clock::now() };
+        auto duration { end - start };
+
+        ofs << std::chrono::duration_cast<std::chrono::microseconds>(duration).count() << 
+            "\n"; // "Execution time: " << µs 
+    }
+};
+} // Utils namespace
 
 using ValType = int; // Evil thing to ease testing of different data types
 
@@ -55,29 +94,36 @@ std::vector<ValType> merge_sort(const std::vector<ValType>& array) {
 }
 } // MergeSort namespace
 
-struct Timer
-{
-    std::chrono::high_resolution_clock::time_point start { std::chrono::high_resolution_clock::now() };
-
-    ~Timer() {
-        auto end { std::chrono::high_resolution_clock::now() };
-        auto duration { end - start };
-
-        std::cout << "\nExecution time: " << 
-            std::chrono::duration_cast<std::chrono::microseconds>(duration).count() << 
-            " µs\n";
-    }
-};
-
 int main()
 {
     std::freopen("input.txt", "r", stdin);
 
-    {
-        Timer t{};
+    constexpr int points_amount { 50 };
+    constexpr int tests_amount  { 100 };
+    // Get N data points for a given level of optimization:
+    ofs << "O3\n";
+    ofs << points_amount << '\n'; // << "Amount of points: "
+    ofs << tests_amount << '\n'; // << "Amount of tests per point: " 
 
-        std::vector<ValType> v{};
-        for (ValType tmp{}; std::cin >> tmp; v.push_back(tmp)) {}
-        printv(MergeSort::merge_sort(v));
+    for (int point_num{}; point_num < points_amount; ++point_num) {
+        // ofs << '\n';
+        
+        const int v_size { Utils::get_rand_num<int>(2, 1000 ) };
+        
+        ofs << v_size << '\n'; //  "Dataset length: " <<
+        // Run 100 tests for fixed dataset length:
+        for (int test_num{}; test_num < tests_amount; ++test_num) 
+        {   
+            Utils::Timer t{};
+
+            std::vector<ValType> v(v_size, 0);
+
+            Utils::random_fillv(v, 10, 100);
+
+            v = MergeSort::merge_sort(v);
+            // Utils::printv(v);
+            // Utils::printv(MergeSort::merge_sort(v));
+        }
+        // for (ValType tmp{}; std::cin >> tmp; v.push_back(tmp)) {}
     }
 }
