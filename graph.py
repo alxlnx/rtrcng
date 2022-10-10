@@ -2,7 +2,10 @@
 
 from matplotlib import pyplot as plt
 
-x = [i for i in range(10)]
-y = [i ** 2 for i in x]
+# Build T(n) for merge sort, where
+#   T - execution time
+#   n - dataset length
 
-plt.scatter(x, y)
+
+
+plt.show()
