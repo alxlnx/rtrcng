@@ -1,4 +1,6 @@
 #!/opt/rh/rh-python38/root/usr/bin/python3
+from cProfile import label
+from cmath import log
 from matplotlib import pyplot as plt
 import numpy as np
 
@@ -7,7 +9,7 @@ import numpy as np
 #   n - dataset length
 
 # TASK:
-# Draw three distinct graphs for each levels of optimization (O0, O1, O2, O3)
+# Draw three distinct graphs for each level of optimization (O0, O1, O2, O3)
 
 filename = 'output.txt'
 
@@ -47,9 +49,17 @@ for dataset_num in range(points_amount):
     # print()
 
 # print(len(dataset_lengths), len(execution_times))
-plt.scatter(dataset_lengths, execution_times)
+plt.scatter(dataset_lengths, execution_times, color=[0,0,0], label='test data', marker='.')
+plt.grid(linestyle='--', linewidth=0.5)
+plt.minorticks_on()
+plt.ylabel('Execution time, µs')
+plt.xlabel('N, length of array being sorted')
+plt.title('Merge Sort (O3)')
+x = range(1, 10000)
+y = [i / 1.5 for i in x]
+plt.plot(x, y, label='n * log(n)')
+plt.legend()
 
 # print(opt_level, points_amount, tests_amount)
- 
 
 plt.show()

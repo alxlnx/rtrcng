@@ -98,8 +98,8 @@ int main()
 {
     std::freopen("input.txt", "r", stdin);
 
-    constexpr int points_amount { 50 };
-    constexpr int tests_amount  { 100 };
+    constexpr int points_amount { 500 };
+    constexpr int tests_amount  { 80 };
     // Get N data points for a given level of optimization:
     ofs << "O3\n";
     ofs << points_amount << '\n'; // << "Amount of points: "
@@ -108,7 +108,7 @@ int main()
     for (int point_num{}; point_num < points_amount; ++point_num) {
         // ofs << '\n';
         
-        const int v_size { Utils::get_rand_num<int>(2, 1000 ) };
+        const int v_size { Utils::get_rand_num<int>(2, 10000) };
         
         ofs << v_size << '\n'; //  "Dataset length: " <<
         // Run 100 tests for fixed dataset length:
@@ -118,7 +118,7 @@ int main()
 
             std::vector<ValType> v(v_size, 0);
 
-            Utils::random_fillv(v, 10, 100);
+            Utils::random_fillv(v, 10, 300);
 
             v = MergeSort::merge_sort(v);
             // Utils::printv(v);
