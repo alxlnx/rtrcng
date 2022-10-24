@@ -4,7 +4,8 @@
         {
             "type": "shell",
             "label": "clang++ build",
-            "command": "/opt/rh/llvm-toolset-7/root/usr/bin/clang++",
+            "command": "/usr/bin/g++", 
+            //"/opt/rh/llvm-toolset-7/root/usr/bin/clang++",
             "args": [
                 "-g",
                 "${file}",

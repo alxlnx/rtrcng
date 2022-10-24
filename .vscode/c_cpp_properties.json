@@ -4,7 +4,8 @@
         "name": "Linux",
         "includePath": ["${workspaceFolder}/**"],
         "defines": [],
-        "compilerPath": "/opt/rh/devtoolset-10/root/usr/bin/g++",
+        "compilerPath": "/usr/bin/g++",
+        // "/opt/rh/devtoolset-10/root/usr/bin/g++",
         "cStandard": "c11",
         "cppStandard": "c++17",
         "intelliSenseMode": "clang-x64"

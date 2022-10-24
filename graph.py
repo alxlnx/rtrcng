@@ -1,6 +1,4 @@
-#!/opt/rh/rh-python38/root/usr/bin/python3
-from cProfile import label
-from cmath import log
+#!/usr/bin/python3
 from matplotlib import pyplot as plt
 import numpy as np
 
@@ -49,16 +47,12 @@ for dataset_num in range(points_amount):
     # print()
 
 # print(len(dataset_lengths), len(execution_times))
-plt.scatter(dataset_lengths, execution_times, color=[0,0,0], label='test data', marker='.')
-plt.grid(linestyle='--', linewidth=0.5)
-plt.minorticks_on()
+plt.scatter(dataset_lengths, execution_times)
+plt.xlabel('Dataset length')
 plt.ylabel('Execution time, µs')
-plt.xlabel('N, length of array being sorted')
-plt.title('Merge Sort (O3)')
-x = range(1, 10000)
-y = [i / 1.5 for i in x]
-plt.plot(x, y, label='n * log(n)')
-plt.legend()
+plt.grid('--', linewidth=0.6)
+plt.minorticks_on()
+plt.title('Execution time of the merge sort algorithm')
 
 # print(opt_level, points_amount, tests_amount)
 

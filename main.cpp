@@ -3,7 +3,7 @@
 std::ofstream ofs {"output.txt"};
 
 namespace Utils {
-template <typename T> // NB: T must be an integer type (signed/unsigned, pos/neg - doesn't matter).
+template <typename T>
 void dec2bin(const T& n) 
 // Print binary representation of n (output is sent to stdout) using bit masks.
 {
@@ -18,7 +18,7 @@ template <typename T>
 void printv(const std::vector<T>& v) 
 // Print a vector to stdout
 {
-    for (auto x : v)
+    for (auto& x : v)
         std::cout << x << ' ';
     std::cout << '\n';
 }
@@ -59,7 +59,8 @@ struct Timer
 using ValType = int; // Evil thing to ease testing of different data types
 
 namespace MergeSort {
-std::vector<ValType> merge(const std::vector<ValType>& lhs, const std::vector<ValType>& rhs) {
+std::vector<ValType> merge(const std::vector<ValType>& lhs, const std::vector<ValType>& rhs)
+{
     std::vector<ValType> result{};
     int i{}, j{};
     // Compare and add while there's room for that
@@ -77,7 +78,8 @@ std::vector<ValType> merge(const std::vector<ValType>& lhs, const std::vector<Va
     return result;
 }
 
-std::vector<ValType> merge_sort(const std::vector<ValType>& array) {
+std::vector<ValType> merge_sort(const std::vector<ValType>& array) 
+{
     if (array.size() <= 1) return array;
 
     int middle = array.size() / 2;
@@ -98,8 +100,13 @@ int main()
 {
     std::freopen("input.txt", "r", stdin);
 
+<<<<<<< HEAD
     constexpr int points_amount { 500 };
     constexpr int tests_amount  { 80 };
+=======
+    constexpr int points_amount { 100 };
+    constexpr int tests_amount  { 100 };
+>>>>>>> ee7dc0d (Update lab code)
     // Get N data points for a given level of optimization:
     ofs << "O3\n";
     ofs << points_amount << '\n'; // << "Amount of points: "
@@ -124,6 +131,5 @@ int main()
             // Utils::printv(v);
             // Utils::printv(MergeSort::merge_sort(v));
         }
-        // for (ValType tmp{}; std::cin >> tmp; v.push_back(tmp)) {}
     }
 }
