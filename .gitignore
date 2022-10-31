@@ -1,5 +1,5 @@
 # Worksation-specific files which don't need synching:
-.vscode
+/.vscode/
 
 # Prerequisites
 *.d
