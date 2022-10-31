@@ -1,3 +1,6 @@
+# Worksation-specific files which don't need synching:
+.vscode
+
 # Prerequisites
 *.d
 

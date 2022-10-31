@@ -1,29 +1,51 @@
 {
-    "version": "2.0.0",
-    "tasks": [
-        {
-            "type": "shell",
-            "label": "clang++ build",
-            "command": "/usr/bin/g++", 
-            //"/opt/rh/llvm-toolset-7/root/usr/bin/clang++",
-            "args": [
-                "-g",
-                "${file}",
-                "-O3",
-                "-o",
-                "${fileDirname}/${fileBasenameNoExtension}",
-                "-std=c++17"
-            ],
-            "options": {
-                "cwd": "/opt/rh/llvm-toolset-7/root/usr/bin"
-            },
-            "problemMatcher": [
-                "$gcc"
-            ],
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            }
-        }
-    ]
-  }
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "shell",
+      "label": "g++ - debug (tasks.json), MINE",
+      "command": "/usr/bin/g++",
+      "args": [
+        "-std=c++17",
+        "-Wall",
+        "-Wshadow",
+        //"-ggdb", // broke some code in the past, uncomment with care
+        "-Og",
+        "${workspaceFolder}/G.cpp",
+        "-o",
+        "${fileDirname}/${fileBasenameNoExtension}"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": [
+        "$gcc"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    {
+      "type": "shell",
+      "label": "g++ - fast (tasks.json), MINE",
+      "command": "/usr/bin/g++",
+      "args": [
+        "-std=c++17",
+        "-Wall",
+        "-Wshadow",
+        "-O3",
+        "${workspaceFolder}/cp.cpp",
+        "-o",
+        "${fileDirname}/${fileBasenameNoExtension}"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": [
+        "$gcc"
+      ],
+      "group": "build"
+    }
+  ]
+}
