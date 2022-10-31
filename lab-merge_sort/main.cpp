@@ -100,13 +100,8 @@ int main()
 {
     std::freopen("input.txt", "r", stdin);
 
-<<<<<<< HEAD
-    constexpr int points_amount { 500 };
-    constexpr int tests_amount  { 80 };
-=======
     constexpr int points_amount { 100 };
     constexpr int tests_amount  { 100 };
->>>>>>> ee7dc0d (Update lab code)
     // Get N data points for a given level of optimization:
     ofs << "O3\n";
     ofs << points_amount << '\n'; // << "Amount of points: "
