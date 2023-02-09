@@ -1,2 +1,2 @@
-# cpp
-Code written during C++ classes.
+# rtrcng
+Raytracer in C++. Written using 'Raytracing in One Weekend' book series.
