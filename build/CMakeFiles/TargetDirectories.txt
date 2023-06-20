@@ -1,3 +1,0 @@
-/home/alx/repos/rtrcng/build/CMakeFiles/main.dir
-/home/alx/repos/rtrcng/build/CMakeFiles/edit_cache.dir
-/home/alx/repos/rtrcng/build/CMakeFiles/rebuild_cache.dir
