@@ -1,5 +1,16 @@
 {
     "files.associations": {
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "*.tcc": "c",
+        "array": "c",
+        "string_view": "c",
+        "initializer_list": "c",
+        "utility": "c",
+        "types.h": "c",
+        "shm.h": "c",
+        "stdlib.h": "c",
+        "signal.h": "c",
+        "string.h": "c",
+        "errno.h": "c"
     }
 }

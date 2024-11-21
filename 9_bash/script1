@@ -1,0 +1,56 @@
+#!/bin/bash
+# Написать подробные комментарии
+
+help() {
+  cat <<- _EOF_
+	Script 1. This program takes 2 positional arguments.
+		- Level one dir num
+		- Level two dir num
+	Enter either of them as -1 to clean up.
+	-------------------------------------
+	_EOF_
+}
+
+if [[ "$1" -eq -1 || "$2" -eq -2 ]]; then
+  echo "Cleaning up..."
+  rm --recursive ./test
+	exit 0
+fi
+
+if [[ -z "$1" || -z "$2" ]]; then
+  echo "I need input." >&2
+	exit 1
+fi
+
+if [[ "$1" -eq "-h" || "$2" -eq "-h" ]]; then
+	help
+	exit 0
+fi
+
+mkdir -p test
+cd test
+
+n=0
+
+PREFIX="./test"
+
+for ((i = 1; i < $1+1; i++));
+do
+  mkdir -p "level1.$i"
+	for ((j = 1; j < $2+1; j++));
+	do
+		mkdir -p "level1.$i/level2.$j"
+		
+		n=$((n+1))
+					
+		touch "level1.$i/level2.$j/TextFile$n"
+    file_path="$PREFIX/level1.$i/level2.$j/TextFile$n"
+		echo "This is file $n, located in $file_path" | tee "./level1.$i/level2.$j/TextFile$n"
+	done
+done
+
+for f in $(find . -type f)
+do
+  contents=$(rev $f)
+  echo "$contents" > $f
+done

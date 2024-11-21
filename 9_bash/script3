@@ -1,0 +1,28 @@
+#! /bin/bash
+# Написать подробные комментарии
+i=1
+while [ $i -lt 5 ]
+do
+  mkdir "dir$i"; cd dir$i
+  touch "file$i" && echo "abcd" > "file$i"
+  echo $(rev file$i) > file$i
+  i=$(( $i + 1 ))
+done
+
+# echo $1
+if [[ ! (-d "Directory") ]]; then
+  mkdir "Directory"
+fi
+cd "Directory"
+for ((i = 1; i < $1+1; i++))
+   do
+      mkdir "Folder $i"
+      for ((j = 1; j < $2+1; j++))
+         do
+	    touch "Folder $i/File $j"
+	    for ((k  = 1; k < $3+1; k++))
+	       do
+	          echo You have come to the File number $j of the Folder number $i >> "Folder $i/File $j"	
+               done	  
+	 done
+   done

@@ -1,0 +1,77 @@
+Часть глобальных переменных - вход
+join, ждём и читаем данные, потом считаем.
+Пока идёт расчёт, вход простаивает и наоборот.
+Часть глобальных переменных - выход
+
+Потоки - ф-и (запускаем потоки передавая указатель на функцию)
+
+Никаких расчётов по кнопке (когда вся программа занята вычислениями)
+基本原则: Все расчёты в отдельных потоках, даём туда требуемые вычисления
+Т.е. не считать ничего в том потоке, в котором работаешь.
+(это и в Python тоже)
+
+Можно писать loading... пока идёт расчёт.
+Progress bar: open a separate window, make it read a varible (e.g. progress) and display it.
+All calculations are done in a separate thread! 
+
+You can use a system timer to launch threads (i.e. button press -> timer launch -> 0.1s -> thread launch)
+
+Объяснить, почему double не работает.
+
+int pthread_join(pthread_t thread, void **retval);
+
+int pthread_create(pthread_t *restrict thread,
+                          const pthread_attr_t *restrict attr,
+                          void *(*start_routine)(void *),
+                          void *restrict arg);
+
+GLOBAL a:
+
+pp 0x7fffffffd7b8
+ * pp 2007.000000
+arg 0x7fffffffd7b8
+2 pp 0x7fffffffd7b8
+2 * pp 2007.000000
+*arg 2007.000000
+a 2008.000000
+pa 0x555555558030
+*pa 2008.000000
+pdata 0x7fffffffd7ac
+* pdata 0x555555558030
+ ** pdata 2008.000000
+ ** pdata 2009.000000
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Когда a локальная, double a очищается из стека после выхода функции, т.е. указатель pdata указывает на очищенную память.
+
+LOCAL a:
+
+pp 0x7fffffffd7b8
+ * pp 2007.000000
+// arg --------------
+2 pp 0x7fffffffd7b8
+2 * pp 2007.000000
+arg 0x7fffffffd7b8
+*arg 2007.000000
+a 2008.000000
+pa 0x7ffff79ffea8
+*pa 2008.000000
+pdata 0x7fffffffd7ac
+* pdata 0x7ffff79ffea8
+ ** pdata 0.000000
+ ** pdata 0.000000
+
+
