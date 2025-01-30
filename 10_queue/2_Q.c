@@ -3,6 +3,7 @@
 //запустить несколько экземпляров такой программы и они все будут обмениваться  
 //сообщениями между собой по номерам.
 //Всё это нужно реализовать через одну очередь. 
+/* This could also read SIGINT and delete the Q when detected */
 #include <sys/types.h>
 #include <sys/ipc.h>
 #include <sys/msg.h>
@@ -72,7 +73,8 @@ int main(int argc, char* arg[])
         exit(1);
       }
       
-      printf("message type = %ld, info = %s\n", mybuf.mtype, mybuf.mtext);
+      /// printf("message type = %ld, info = %s\n", mybuf.mtype, mybuf.mtext);
+      printf(">> %s", mybuf.mtext);
     }
   } else 
   {

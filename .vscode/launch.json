@@ -7,7 +7,7 @@
             "request": "launch",
             "program": "${fileDirname}/${fileBasenameNoExtension}",
             //"program": "${fileDirname}/output",
-            "args": [],
+            "args": ["example.com"],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
             "environment": [],

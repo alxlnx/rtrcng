@@ -19,4 +19,13 @@
 
 //  Сдесь изложены лишь наброски алгоритма, начинать необходимо с прорабтоки
 //  алгоритмов работы клиента и арбитра.
-//  Клиента удобнее реализовывать на потоках.  
+//  Клиента удобнее реализовывать на потоках.
+
+// NB: threads can fuck the code up (they can somehow literally flush the code)
+// When you have some code with no branching and it fails to execute
+// (e.g. you have a printf which just doesn't execute),
+// then you must be overwriting the code with something.
+// That can happen if you fail to synchronise the threads.
+
+// Раньше на 2 курсе зимой было по 9 экзов, на фопфе были рт лабы, химия и хим. лабы, металлообработка.
+// Суть в том, что "учили учиться" и сдавать экзамены, не зная всего до конца, но понимая суть.
